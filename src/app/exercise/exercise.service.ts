@@ -15,9 +15,9 @@ export type Exercise = {
 
 @Injectable({ providedIn: 'root' })
 export class ExerciseService {
-  private http = inject(HttpClient);
-  // Use proxy in dev: ng serve --proxy-config proxy.conf.json
-  private base = 'http://localhost:4000/api/exercises';
+private http = inject(HttpClient);
+// Use proxy in dev: ng serve --proxy-config proxy.conf.json
+private base = '/api/exercises';
 
   list(petId?: string): Observable<Exercise[]> {
     const url = petId ? `${this.base}?petId=${encodeURIComponent(petId)}` : this.base;
