@@ -1,0 +1,24 @@
+.page { max-width: 920px; margin: 1.25rem auto; padding: 0 1rem; }
+.card { background: #fff; padding: 1rem; border-radius: 12px; box-shadow: 0 1px 6px rgba(0,0,0,.08); margin-block: 1rem; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; }
+label { display: flex; flex-direction: column; gap: .25rem; }
+label.full { grid-column: 1 / -1; }
+.actions { display: flex; gap: .5rem; }
+button { padding: .5rem .9rem; border-radius: 8px; border: 1px solid #ccc; background: #f6f6f6; cursor: pointer; }
+button.secondary { background: #fafafa; }
+button.danger { border-color: #c33; }
+button:disabled { opacity: .6; cursor: not-allowed; }
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td { padding: .5rem; border-bottom: 1px solid #eee; text-align: left; }
+.alerts { min-height: 1.5rem; }
+.alert { padding: .5rem .75rem; border-radius: 8px; margin-bottom: .5rem; }
+.alert.error { background: #ffecec; border: 1px solid #ffb3b3; }
+.alert.success { background: #ecffec; border: 1px solid #b3ffb3; }
+.invalid { color: #c00; font-size: .85rem; }
+.muted { color: #6b7280; font-size: .9rem; }
+.chip { font-size: .75rem; padding: .15rem .45rem; border-radius: 999px; border: 1px solid #ddd; background: #fafafa; margin-left: .5rem; }
+.summary .row { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1rem; text-align: center; }
+.kpi { font-size: 1.4rem; font-weight: 600; color: #254E70; }
+.label { font-size: .85rem; color: #6b7280; }
+.pace { padding-top: .25rem; }
+@media (max-width: 700px){ .grid { grid-template-columns: 1fr; } .summary .row { grid-template-columns: 1fr; } }

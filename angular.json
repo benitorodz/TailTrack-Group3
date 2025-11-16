@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "trailtrack-app": {
+    "tailtrack-app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -61,10 +61,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "trailtrack-app:build:production"
+              "buildTarget": "tailtrack-app:build:production"
             },
             "development": {
-              "buildTarget": "trailtrack-app:build:development"
+              "buildTarget": "tailtrack-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -93,5 +93,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

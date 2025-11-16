@@ -1,1 +1,108 @@
-/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --brand: #254E70;
+  --bg: #f8fafc;
+  --text: #111;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --radius: 12px;
+  --space: 1rem;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+h1, h2, h3 { color: var(--brand); font-weight: 600; margin: 0 0 .5rem; }
+
+/* 
+   layout
+   */
+.page { max-width: 920px; margin: 1.25rem auto; padding: 0 1rem; }
+.card {
+  background: #fff;
+  padding: 1rem;
+  border-radius: var(--radius);
+  box-shadow: 0 1px 6px rgba(0,0,0,.08);
+  margin-block: var(--space);
+}
+
+/* two column form grid */
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+@media (max-width: 700px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+/* 
+   Controls for forms
+    */
+label { display: flex; flex-direction: column; gap: .25rem; }
+label.full { grid-column: 1 / -1; }
+
+input, select, textarea {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: .5rem .6rem;
+  font: inherit;
+  background: #fff;
+}
+
+.invalid { color: #c00; font-size: .85rem; }
+.muted { color: var(--muted); font-size: .9rem; }
+
+/* buttons */
+button {
+  padding: .5rem .9rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #f6f6f6;
+  cursor: pointer;
+}
+button:hover { filter: brightness(0.98); }
+button:disabled { opacity: .6; cursor: not-allowed; }
+
+button.secondary { background: #fafafa; }
+button.danger { border-color: #c33; }
+
+/* toggle */
+.chip {
+  font-size: .75rem;
+  padding: .15rem .45rem;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  background: #fafafa;
+  margin-left: .5rem;
+}
+
+/* table */
+
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td {
+  padding: .5rem;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+
+.alerts { min-height: 1.5rem; }
+.alert { padding: .5rem .75rem; border-radius: 8px; margin-bottom: .5rem; }
+.alert.error { background: #ffecec; border: 1px solid #ffb3b3; }
+.alert.success { background: #ecffec; border: 1px solid #b3ffb3; }
+
+
+.summary .row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 1rem;
+  text-align: center;
+}
+.kpi { font-size: 1.4rem; font-weight: 600; color: var(--brand); }
+.label { font-size: .85rem; color: var(--muted); }
+
+
+.actions { display: flex; gap: .5rem; }
