@@ -16,7 +16,7 @@ export class ExerciseLogComponent implements OnInit {
   petId = 'demo-pet-1';
 
   activities: Exercise['activityType'][] = [
-    'Walk', 'Run', 'Play', 'Park', 'Frisbee', 'Swim', 'Hike', 'Training', 'Other'
+    'Walk', 'Run', 'Play', 'Other'
   ];
 
   items: Exercise[] = [];
