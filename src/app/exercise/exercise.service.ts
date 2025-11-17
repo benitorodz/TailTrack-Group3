@@ -6,7 +6,7 @@ export type Exercise = {
   _id?: string;
   petId: string;
   date: string;
-  activityType: 'Walk' | 'Run' | 'Play' | 'Park' | 'Frisbee' | 'Swim' | 'Hike' | 'Training' | 'Other';
+  activityType: 'Walk' | 'Run' | 'Play' | 'Other';
   durationMinutes: number;
   distanceMiles?: number;  
   notes?: string;
