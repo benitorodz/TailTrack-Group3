@@ -1,0 +1,87 @@
+
+<div class="page">
+  <div class="card">
+    <h2>🐾 Feeding Schedule</h2>
+    <p class="muted">Record your pet’s feeding times, food type, and portion size.</p>
+
+    <form [formGroup]="feedingForm" (ngSubmit)="onSubmit()" class="grid">
+      <label>
+        Pet Name
+        <input formControlName="petName" placeholder="e.g., Bella" />
+        <span class="invalid" *ngIf="feedingForm.get('petName')?.touched && feedingForm.get('petName')?.invalid">
+          Pet name is required.
+        </span>
+      </label>
+
+      <label>
+        Date
+        <input type="date" formControlName="date" />
+        <span class="invalid" *ngIf="feedingForm.get('date')?.touched && feedingForm.get('date')?.invalid">
+          Date is required.
+        </span>
+      </label>
+
+      <label>
+        Time
+        <input type="time" formControlName="time" />
+        <span class="invalid" *ngIf="feedingForm.get('time')?.touched && feedingForm.get('time')?.invalid">
+          Time is required.
+        </span>
+      </label>
+
+      <label>
+        Food Type
+        <input formControlName="foodType" placeholder="Dry Food" />
+        <span class="invalid" *ngIf="feedingForm.get('foodType')?.touched && feedingForm.get('foodType')?.invalid">
+          Food type is required.
+        </span>
+      </label>
+
+      <label>
+        Portion (cups)
+        <input formControlName="portion" placeholder="1.5" />
+        <span class="invalid" *ngIf="feedingForm.get('portion')?.touched && feedingForm.get('portion')?.invalid">
+          Portion is required.
+        </span>
+      </label>
+
+      <button type="submit" [disabled]="feedingForm.invalid">
+        {{ editingIndex !== null ? 'Update Feeding' : 'Add Feeding' }}
+      </button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h3>Feeding Log</h3>
+
+    <table class="table" *ngIf="feedings.length > 0; else noData">
+      <thead>
+        <tr>
+          <th>Pet</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Food Type</th>
+          <th>Portion</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let feed of feedings; let i = index">
+          <td>{{ feed.petName }}</td>
+          <td>{{ feed.date }}</td>
+          <td>{{ feed.time }}</td>
+          <td>{{ feed.foodType }}</td>
+          <td>{{ feed.portion }}</td>
+          <td class="actions">
+            <button (click)="onEdit(i)">Edit</button>
+            <button class="danger" (click)="onDelete(i)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #noData>
+      <p class="muted">No feeding entries yet.</p>
+    </ng-template>
+  </div>
+</div>
