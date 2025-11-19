@@ -21,9 +21,10 @@ mongoose.connect(uri)
 
 // Routes
 app.use('/api/exercises', require('./routes/exercise.routes'));
+app.use('/api/vet', require('./routes/vet.routes'));
 
 // Start server
-const PORT = process.env.PORT || 4001;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`🚀 API running at http://127.0.0.1:${PORT}`);
 });

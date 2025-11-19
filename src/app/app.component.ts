@@ -9,7 +9,8 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
     <header class="page">
       <h1>TailTrack</h1>
       <nav class="actions">
-        <a routerLink="/exercise" routerLinkActive="active">Exercise Log</a>
+        <a routerLink="/Vet
+        " routerLinkActive="active">Vet Log</a>
         <!-- later: add Feeding, Vet Visits, etc -->
       </nav>
     </header>
