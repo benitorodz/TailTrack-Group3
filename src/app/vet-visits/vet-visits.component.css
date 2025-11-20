@@ -1,0 +1,2 @@
+/* Component-specific tweaks; main look from src/styles.css */
+.table td.actions { white-space: nowrap; }

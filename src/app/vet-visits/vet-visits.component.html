@@ -1,0 +1,64 @@
+<div class="page">
+  <h2 style="text-align:center;">Vet Visits / Records</h2>
+
+  <div class="card summary">
+    <div class="row">
+      <div><div class="kpi">{{ visitsLast7Days }}</div><div class="label">Visits (7 days)</div></div>
+      <div><div class="kpi">{{ totalVisits }}</div><div class="label">Total Visits</div></div>
+      <div><div class="kpi">{{ upcomingAppts }}</div><div class="label">Upcoming</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="grid">
+        <label>Date<input type="date" formControlName="date"></label>
+        <label>Vet<input formControlName="vetName" placeholder="Dr. Smith"></label>
+        <label>Pet<input formControlName="petId" placeholder="Luna"></label>
+        <label>Reason<input formControlName="reason" placeholder="Check-up"></label>
+        <label class="full">Diagnosis<textarea rows="2" formControlName="diagnosis"></textarea></label>
+        <label class="full">Treatment<textarea rows="2" formControlName="treatment"></textarea></label>
+        <label>Next Appt.<input type="date" formControlName="nextAppointment"></label>
+      </div>
+      <div class="actions">
+        <button type="submit">{{ editingId ? 'Update' : 'Save' }}</button>
+        <button type="button" class="secondary" (click)="form.reset()">Reset</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="card">
+    <div class="actions" style="justify-content:space-between;">
+      <h3>Recent Visits</h3>
+      <div>
+        <select [(ngModel)]="petFilter">
+          <option value="">Filter by pet…</option>
+          <option *ngFor="let p of uniquePets()" [value]="p">{{ p }}</option>
+        </select>
+        <button class="secondary" (click)="clearFilter()">Clear</button>
+      </div>
+    </div>
+    <table class="table">
+      <thead>
+        <tr><th>Date</th><th>Pet</th><th>Reason</th><th>Vet</th><th>Next</th><th>Action</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let v of filtered()">
+          <td>{{ v.date }}</td>
+          <td>{{ v.petId }}</td>
+          <td>{{ v.reason }}</td>
+          <td>{{ v.vetName }}</td>
+          <td>{{ v.nextAppointment || '—' }}</td>
+          <td class="actions">
+            <button (click)="edit(v)">Edit</button>
+            <button class="danger" (click)="remove(v)">Delete</button>
+          </td>
+        </tr>
+        <tr *ngIf="filtered().length===0">
+          <td colspan="6" class="muted">No records yet.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<p>vet-visits works!</p>
