@@ -1,0 +1,9 @@
+h2 { 
+  margin-bottom: 1rem; 
+  color: var(--brand); 
+}
+
+input.ng-invalid.ng-touched, 
+textarea.ng-invalid.ng-touched {
+  border-color: #e63946;
+}
