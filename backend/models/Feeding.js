@@ -1,4 +1,4 @@
-// backend/models/Feeding.js
+
 const mongoose = require('mongoose');
 
 const feedingSchema = new mongoose.Schema(

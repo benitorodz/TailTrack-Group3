@@ -22,6 +22,7 @@ mongoose.connect(uri)
 // Routes
 app.use('/api/exercises', require('./routes/exercise.routes'));
 app.use('/api/feedings', require('./routes/feeding.routes'));
+app.use('/api/vet-visits', require('./routes/vet.routes'));
 
 // Start server
 const PORT = process.env.PORT || 4000;

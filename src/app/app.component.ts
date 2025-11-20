@@ -11,13 +11,14 @@ template: `
     <nav class="actions">
       <a routerLink="/feeding" routerLinkActive="active">Feeding Schedule</a>
       <a routerLink="/exercise" routerLinkActive="active">Exercise Log</a>
+      <a routerLink="/visits" routerLinkActive="active">Vet Visits</a>
     </nav>
   </header>
 
   <main class="page">
     <router-outlet></router-outlet>
   </main>
-  `
+`
   // no styleUrls – you’re using global styles.css
 })
 export class AppComponent {}
