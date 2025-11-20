@@ -1,0 +1,120 @@
+<div class="profile-container">
+  <header class="profile-header">
+    <h2>
+      <span class="icon">🐾</span>
+      Pet Profile
+    </h2>
+    <p class="subtitle">Record your pet's information and medical history.</p>
+  </header>
+
+  <form [formGroup]="profileForm" class="profile-form">
+    <div class="form-section">
+      <h3>Basic Information</h3>
+      
+      <div class="form-row">
+        <label for="pet-name">Pet Name</label>
+        <input 
+          id="pet-name" 
+          type="text" 
+          formControlName="petName"
+          placeholder="Enter pet name"
+        />
+      </div>
+
+      <div class="form-row">
+        <label for="pet-type">Pet Type</label>
+        <input 
+          id="pet-type" 
+          type="text" 
+          formControlName="petType"
+          placeholder="Dog, Cat, etc."
+        />
+      </div>
+
+      <div class="form-row">
+        <label for="pet-breed">Breed</label>
+        <input 
+          id="pet-breed" 
+          type="text" 
+          formControlName="petBreed"
+          placeholder="Enter breed"
+        />
+      </div>
+
+      <div class="form-row">
+        <label for="birthday">Birthday</label>
+        <input 
+          id="birthday" 
+          type="date" 
+          formControlName="birthday"
+        />
+      </div>
+
+      <div class="form-row">
+        <label for="weight">Weight (lbs)</label>
+        <input 
+          id="weight" 
+          type="number" 
+          formControlName="weight"
+          min="0"
+          step="0.1"
+          placeholder="Enter weight"
+        />
+      </div>
+
+      <div class="form-row">
+        <label for="pet-summary">Summary</label>
+        <textarea 
+          id="pet-summary" 
+          formControlName="petSummary"
+          placeholder="Add any additional notes about your pet"
+          rows="3"
+        ></textarea>
+      </div>
+    </div>
+
+    <div formGroupName="medInfo" class="form-section med-info">
+      <h3>Medical Information</h3>
+      
+      <div class="form-row">
+        <label for="vaccine">Vaccinations</label>
+        <textarea 
+          id="vaccine" 
+          formControlName="vaccine"
+          placeholder="List vaccinations and dates"
+          rows="2"
+        ></textarea>
+      </div>
+
+      <div class="form-row">
+        <label for="allergies">Allergies</label>
+        <textarea 
+          id="allergies" 
+          formControlName="allergies"
+          placeholder="List any known allergies"
+          rows="2"
+        ></textarea>
+      </div>
+
+      <div class="form-row">
+        <label for="medications">Medications</label>
+        <textarea 
+          id="medications" 
+          formControlName="medications"
+          placeholder="List current medications and dosages"
+          rows="2"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button 
+        type="submit"
+        class="save-btn"
+        [disabled]="!profileForm.valid"
+      >
+        Save Profile
+      </button>
+    </div>
+  </form>
+</div>

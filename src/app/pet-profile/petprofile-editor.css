@@ -1,0 +1,122 @@
+.profile-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 24px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+  margin-bottom: 24px;
+}
+
+.profile-header h2 {
+  color: #2c3e50;
+  font-size: 24px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.subtitle {
+  color: #666;
+  margin: 8px 0 0;
+  font-size: 14px;
+}
+
+.form-section {
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.form-section h3 {
+  color: #2c3e50;
+  margin: 0 0 16px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4a5568;
+  margin-bottom: 6px;
+}
+
+input, textarea {
+  padding: 8px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+input:focus, textarea:focus {
+  border-color: #4299e1;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.2);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.med-info {
+  background: #f0f9ff;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.save-btn {
+  background-color: #4299e1;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.save-btn:hover {
+  background-color: #3182ce;
+}
+
+.save-btn:disabled {
+  background-color: #cbd5e0;
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments */
+@media (min-width: 640px) {
+  .form-row {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+
+  label {
+    min-width: 120px;
+    margin-bottom: 0;
+  }
+
+  input, textarea {
+    flex: 1;
+  }
+}
