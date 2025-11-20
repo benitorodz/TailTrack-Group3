@@ -106,3 +106,44 @@ button.danger { border-color: #c33; }
 
 
 .actions { display: flex; gap: .5rem; }
+
+/* navigation bar */
+header.page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space);
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin-bottom: var(--space);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+header.page h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+nav.actions {
+  display: flex;
+  gap: 1rem;
+}
+
+nav.actions a {
+  text-decoration: none;
+  color: var(--brand);
+  font-weight: 500;
+  padding: .3rem .6rem;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+nav.actions a.active {
+  background: #e6f0f8;
+}
+
+nav.actions a:hover {
+  background: #f0f4fa;
+}
+
