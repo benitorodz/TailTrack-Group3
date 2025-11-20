@@ -1,0 +1,97 @@
+<section class="page">
+  <h2>Pet Profiles</h2>
+
+  <div class="grid">
+    <!-- Form -->
+    <div class="card">
+      <h3>{{ editingId ? 'Edit Pet Profile' : 'Create Pet Profile' }}</h3>
+
+      <form [formGroup]="form" (ngSubmit)="submit()" class="form-grid">
+        <label>
+          Pet Name*
+          <input type="text" formControlName="name" />
+        </label>
+
+        <label>
+          Pet Type*
+          <input type="text" formControlName="type" placeholder="Dog, Cat, etc." />
+        </label>
+
+        <label>
+          Breed
+          <input type="text" formControlName="breed" />
+        </label>
+
+        <label>
+          Birthday
+          <input type="date" formControlName="birthday" />
+        </label>
+
+        <label>
+          Weight
+          <input type="number" formControlName="weight" placeholder="lbs" />
+        </label>
+
+        <label class="full-width">
+          Summary
+          <textarea formControlName="summary" rows="2"></textarea>
+        </label>
+
+        <label class="full-width">
+          Medical Information
+          <textarea formControlName="medicalInfo" rows="3"
+            placeholder="Vaccinations, allergies, medications"></textarea>
+        </label>
+
+        <div class="actions-row">
+          <button type="submit">
+            {{ editingId ? 'Update Profile' : 'Create Profile' }}
+          </button>
+          <button type="button" *ngIf="editingId" (click)="editingId = null; form.reset();">
+            Cancel
+          </button>
+        </div>
+
+        <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
+        <p class="success" *ngIf="successMsg">{{ successMsg }}</p>
+      </form>
+    </div>
+
+    <!-- List + Details -->
+    <div class="card">
+      <h3>Saved Pets</h3>
+
+      <p *ngIf="loading">Loading pet profiles...</p>
+      <p *ngIf="!loading && pets.length === 0">No pet profiles yet. Add your first pet!</p>
+
+      <ul class="pet-list" *ngIf="pets.length > 0">
+        <li *ngFor="let pet of pets"
+            [class.selected]="selectedPet?._id === pet._id">
+          <div class="pet-main" (click)="selectPet(pet)">
+            <strong>{{ pet.name }}</strong>
+            <span>{{ pet.type }} • {{ pet.breed || 'Unknown breed' }}</span>
+          </div>
+          <div class="pet-actions">
+            <button type="button" (click)="edit(pet)">Edit</button>
+            <button type="button" (click)="remove(pet)">Delete</button>
+          </div>
+        </li>
+      </ul>
+
+      <div class="pet-details" *ngIf="selectedPet">
+        <h4>{{ selectedPet.name }}</h4>
+        <p><strong>Type:</strong> {{ selectedPet.type }}</p>
+        <p *ngIf="selectedPet.breed"><strong>Breed:</strong> {{ selectedPet.breed }}</p>
+        <p *ngIf="selectedPet.birthday"><strong>Birthday:</strong> {{ selectedPet.birthday }}</p>
+        <p *ngIf="selectedPet.weight !== undefined">
+          <strong>Weight:</strong> {{ selectedPet.weight }} lbs
+        </p>
+        <p *ngIf="selectedPet.summary"><strong>Summary:</strong> {{ selectedPet.summary }}</p>
+        <p *ngIf="selectedPet.medicalInfo">
+          <strong>Medical Info:</strong> {{ selectedPet.medicalInfo }}
+        </p>
+        <button type="button" (click)="clearSelection()">Close details</button>
+      </div>
+    </div>
+  </div>
+</section>
