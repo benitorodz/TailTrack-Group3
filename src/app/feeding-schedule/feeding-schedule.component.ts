@@ -14,7 +14,7 @@ export class FeedingScheduleComponent implements OnInit {
   feedingForm: FormGroup;
   feedings: Feeding[] = [];
   editingIndex: number | null = null;
-  petId = 'demo-pet-1';
+
 
   loading = false;
   errorMsg = '';
@@ -40,7 +40,7 @@ export class FeedingScheduleComponent implements OnInit {
   private loadFeedings(): void {
     this.loading = true;
     this.errorMsg = '';
-    this.feedingApi.list(this.petId).subscribe({
+    this.feedingApi.list('').subscribe({
       next: data => {
         this.feedings = data;
         this.loading = false;
@@ -61,7 +61,7 @@ export class FeedingScheduleComponent implements OnInit {
     const formValue = this.feedingForm.value;
     const payload: Feeding = {
       ...formValue,
-      petId: this.petId
+      petId: formValue.petName
     };
 
     this.errorMsg = '';

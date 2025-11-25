@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { PetService, Pet } from './pet.service';
+import { DogApiService, DogBreed } from './dog-api.service';
 
 @Component({
   selector: 'app-pet-profile',
@@ -17,13 +18,20 @@ export class PetProfileComponent implements OnInit {
   selectedPet: Pet | null = null;
   editingId: string | null = null;
 
+  // Dog API integration state
+  breedOptions: DogBreed[] = [];
+  breedsLoading = false;
+  breedsError = '';
+  selectedBreedInfo: DogBreed | null = null;
+
   loading = false;
   errorMsg = '';
   successMsg = '';
 
   constructor(
     private fb: FormBuilder,
-    private petApi: PetService
+    private petApi: PetService,
+    private dogApi: DogApiService
   ) {
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -154,5 +162,49 @@ export class PetProfileComponent implements OnInit {
         this.errorMsg = 'Error deleting pet profile.';
       }
     });
+  }
+
+  // --- Dog API methods ---
+
+  loadDogBreeds(): void {
+    this.breedsError = '';
+    this.selectedBreedInfo = null;
+
+    // Optional: only allow when type is Dog
+    const type = (this.form.value.type || '').trim().toLowerCase();
+    if (type && type !== 'dog') {
+      this.breedsError = 'Dog breed suggestions are available when Pet Type is "Dog".';
+      return;
+    }
+
+    this.breedsLoading = true;
+    this.dogApi.getBreeds().subscribe({
+      next: breeds => {
+        this.breedOptions = breeds;
+        this.breedsLoading = false;
+        if (!breeds.length) {
+          this.breedsError = 'No dog breeds returned from Dog API.';
+        }
+      },
+      error: () => {
+        this.breedsLoading = false;
+        this.breedsError = 'Error loading breeds from Dog API.';
+      }
+    });
+  }
+
+  applyDogBreed(breedId: string): void {
+    const idNum = Number(breedId);
+    if (!idNum) {
+      this.selectedBreedInfo = null;
+      return;
+    }
+
+    const breed = this.breedOptions.find(b => b.id === idNum) || null;
+    this.selectedBreedInfo = breed;
+
+    if (breed) {
+      this.form.patchValue({ breed: breed.name });
+    }
   }
 }

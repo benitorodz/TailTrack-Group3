@@ -6,6 +6,12 @@
 
   <form [formGroup]="form" (ngSubmit)="submit()" class="card">
     <div class="grid">
+      
+      <label>
+        <div class="label">Pet Name</div>
+        <input type="text" formControlName="petId" placeholder="e.g., Rusty"/>
+      </label>
+      
       <label>
         <div class="label">Date & Time</div>
         <input type="datetime-local" formControlName="dateTime">
@@ -45,6 +51,7 @@
   <table *ngIf="!loading && items.length" class="table">
     <thead>
       <tr>
+        <th>Pet</th>
         <th>Date</th>
         <th>Activity</th>
         <th>Duration</th>
@@ -55,6 +62,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let it of items">
+        <td>{{ it.petId }}</td>
         <td>{{ it.date | date:'short' }}</td>
         <td>{{ it.activityType }}</td>
         <td>{{ it.durationMinutes }}</td>
