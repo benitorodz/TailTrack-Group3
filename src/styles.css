@@ -147,3 +147,94 @@ nav.actions a:hover {
   background: #f0f4fa;
 }
 
+:root {
+  /* you probably already have something like this */
+  --brand: #1e3a8a; /* example deep blue */
+}
+
+/* Generic button reset if you don't already have one */
+button {
+  font: inherit;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+/* Primary button style */
+.btn-primary {
+  background-color: var(--brand);
+  color: #ffffff;
+  border-color: var(--brand);
+}
+
+.btn-primary:hover {
+  background-color: #162a63; /* slightly darker blue */
+  border-color: #162a63;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  background-color: var(--brand);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.paw-print {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+
+.btn-outline {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  background-color: transparent;
+  border: 1px solid var(--brand);
+  color: var(--brand);
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-weight: 500;
+}
+
+.btn-outline:hover {
+  background-color: rgba(30, 58, 138, 0.08); /* subtle blue tint */
+  color: var(--brand);
+  border-color: var(--brand);
+}

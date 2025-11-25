@@ -7,6 +7,7 @@
       <h3>{{ editingId ? 'Edit Pet Profile' : 'Create Pet Profile' }}</h3>
 
       <form [formGroup]="form" (ngSubmit)="submit()" class="form-grid">
+
         <label>
           Pet Name*
           <input type="text" formControlName="name" />
@@ -21,6 +22,38 @@
           Breed
           <input type="text" formControlName="breed" />
         </label>
+
+        <!-- 🔵 Dog API Integration (moved here) -->
+        <div class="full-width dog-api-block">
+         <button type="button" class="btn-outline" (click)="loadDogBreeds()">
+          Suggest dog breeds (Dog API)
+        </button>
+
+          <span *ngIf="breedsLoading">Loading dog breeds...</span>
+          <span class="error" *ngIf="breedsError">{{ breedsError }}</span>
+
+          <div *ngIf="breedOptions.length > 0" class="breed-options">
+            <p>Select a suggested breed:</p>
+            <select (change)="applyDogBreed($any($event.target).value)">
+              <option value="">-- Choose a breed --</option>
+              <option *ngFor="let b of breedOptions" [value]="b.id">
+                {{ b.name }}
+              </option>
+            </select>
+          </div>
+
+          <div *ngIf="selectedBreedInfo" class="breed-details">
+            <h4>Breed details</h4>
+            <p><strong>Temperament:</strong> {{ selectedBreedInfo.temperament || 'N/A' }}</p>
+            <p><strong>Life span:</strong> {{ selectedBreedInfo.lifeSpan || 'N/A' }}</p>
+            <p><strong>Weight:</strong> {{ selectedBreedInfo.weight ? selectedBreedInfo.weight + ' lbs' : 'N/A' }}</p>
+            <img *ngIf="selectedBreedInfo.imageUrl"
+                [src]="selectedBreedInfo.imageUrl"
+                alt="{{ selectedBreedInfo.name }}"
+                style="max-width: 200px; border-radius: 8px; margin-top: 0.5rem;" />
+          </div>
+        </div>
+        <!-- 🔵 End Dog API Section -->
 
         <label>
           Birthday
@@ -67,14 +100,17 @@
       <ul class="pet-list" *ngIf="pets.length > 0">
         <li *ngFor="let pet of pets"
             [class.selected]="selectedPet?._id === pet._id">
+          
           <div class="pet-main" (click)="selectPet(pet)">
             <strong>{{ pet.name }}</strong>
             <span>{{ pet.type }} • {{ pet.breed || 'Unknown breed' }}</span>
           </div>
+
           <div class="pet-actions">
             <button type="button" (click)="edit(pet)">Edit</button>
             <button type="button" (click)="remove(pet)">Delete</button>
           </div>
+
         </li>
       </ul>
 

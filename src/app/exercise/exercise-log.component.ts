@@ -13,8 +13,6 @@ import { Exercise, ExerciseService } from './exercise.service';
 export class ExerciseLogComponent implements OnInit {
   constructor(private fb: FormBuilder, private api: ExerciseService) {}
 
-  petId = 'demo-pet-1';
-
   activities: Exercise['activityType'][] = [
     'Walk', 'Run', 'Play', 'Other'
   ];
@@ -31,6 +29,7 @@ export class ExerciseLogComponent implements OnInit {
   ngOnInit(): void {
     // build the form here to avoid TS2729
     this.form = this.fb.group({
+      petId: ['', Validators.required], 
       dateTime: [this.nowIsoShort(), Validators.required],
       activityType: ['Walk', Validators.required],
       durationMinutes: [30, [Validators.required, Validators.min(1)]],
@@ -44,7 +43,7 @@ export class ExerciseLogComponent implements OnInit {
   refresh(): void {
     this.loading = true;
     this.errorMsg = '';
-    this.api.list(this.petId).subscribe({
+    this.api.list('').subscribe({
       next: data => { this.items = data; this.loading = false; },
       error: err => { this.errorMsg = err?.message || 'Load failed'; this.loading = false; }
     });
@@ -58,9 +57,9 @@ export class ExerciseLogComponent implements OnInit {
       this.form.markAllAsTouched();
       return;
     }
-
+    const base = this.form.value;
     const payload: Exercise = {
-      petId: this.petId,
+      petId: this.form.value.petId,
       date: this.form.value.dateTime,
       activityType: this.form.value.activityType,
       durationMinutes: Number(this.form.value.durationMinutes),
@@ -92,6 +91,7 @@ export class ExerciseLogComponent implements OnInit {
       .slice(0, 16);
 
     this.form.patchValue({
+      petId: item.petId || '',
       dateTime: isoShort,
       activityType: item.activityType,
       durationMinutes: item.durationMinutes,
@@ -120,6 +120,7 @@ export class ExerciseLogComponent implements OnInit {
 
   resetForm(): void {
     this.form.reset({
+      petId: '',
       dateTime: this.nowIsoShort(),
       activityType: 'Walk',
       durationMinutes: 30,
