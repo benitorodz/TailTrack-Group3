@@ -1,5 +1,33 @@
 # TailtrackApp
 
+backend
+PS C:\Dev\TailTrack-Group3\backend> npm start
+
+to start front end - 
+PS C:\Dev\TailTrack-Group3\src\app> npx ng serve --host 127.0.0.1 --port 4300 --proxy-config proxy.conf.json -o
+
+
+
+backend database MongoDB Atlas
+http://127.0.0.1:4000/api/pets
+http://127.0.0.1:4000/api/vet-visits
+http://127.0.0.1:4000/api/feedings
+http://127.0.0.1:4000/api/exercises
+
+https://teams.microsoft.com/l/meetup-join/19%3ameeting_MTgxOWVjNjUtY2E1MS00OWMyLTgzYjUtYzhhYzQzZjBlMDM0%40thread.v2/0?context=%7b%22Tid%22%3a%2245f26ee5-f134-439e-bc93-e6c7e33d61c2%22%2c%22Oid%22%3a%2213b674aa-18ca-46ed-83ab-d01986c68cc4%22%7dAW
+
+
+Angular app
+http://127.0.0.1:4300/pets
+http://127.0.0.1:4300/visits
+http://127.0.0.1:4300/feeding
+http://127.0.0.1:4300/exercise
+
+mongodb+srv://tailtrack_db_user:<QtxgpoO1nCvAhf9B>@ksucluster.tue7v9i.mongodb.net/?appName=KSUcluster
+
+
+
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.1.
 
 ## Development server

@@ -29,7 +29,7 @@ export class ExerciseLogComponent implements OnInit {
   ngOnInit(): void {
     // build the form here to avoid TS2729
     this.form = this.fb.group({
-      petId: ['', Validators.required], 
+      petId: ['', Validators.required],
       dateTime: [this.nowIsoShort(), Validators.required],
       activityType: ['Walk', Validators.required],
       durationMinutes: [30, [Validators.required, Validators.min(1)]],
@@ -57,7 +57,7 @@ export class ExerciseLogComponent implements OnInit {
       this.form.markAllAsTouched();
       return;
     }
-    const base = this.form.value;
+
     const payload: Exercise = {
       petId: this.form.value.petId,
       date: this.form.value.dateTime,
